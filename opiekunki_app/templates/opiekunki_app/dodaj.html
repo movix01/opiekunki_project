@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Opiekunkę</title>
+</head>
+<body>
+    <h1>Dodaj nową opiekunkę</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Dodaj</button>
+    </form>
+
+    <a href="{% url 'lista_opiekunek' %}">Wróć do listy</a>
+</body>
+</html>

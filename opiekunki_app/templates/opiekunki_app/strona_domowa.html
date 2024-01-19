@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Domowa</title>
+</head>
+<body>
+    <h1>Witaj na stronie domowej</h1>
+
+    {% if show_login_register %}
+    <a href="{% url 'logowanie' %}"><button>Zaloguj się</button></a>
+    <a href="{% url 'rejestracja' %}"><button>Zarejestruj się</button></a>
+    <a href="{% url 'lista_opiekunek' %}"><button>Lista Opiekunek</button></a>
+    {% else %}
+    <!-- Tutaj możesz dodać dodatkowe opcje dostępne tylko dla zalogowanych użytkowników -->
+    <a href="{% url 'lista_opiekunek' %}"><button>Lista Opiekunek</button></a>
+    <a href="{% url 'wylogowanie' %}"><button>Wylogowanie</button></a>
+    {% endif %}
+
+</body>
+</html>
