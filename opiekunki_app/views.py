@@ -4,7 +4,7 @@ from .forms import OpiekunkaForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import render, redirect, get_object_or_404
 
 def strona_domowa(request):
     context = {}
@@ -17,20 +17,41 @@ def strona_domowa(request):
 
     return render(request, 'opiekunki_app/strona_domowa.html', context)
 
+@login_required
 def lista_opiekunek(request):
-    opiekunki = Opiekunka.objects.all()
+    opiekunki = Opiekunka.objects.filter(user=request.user)
     return render(request, 'opiekunki_app/lista.html', {'opiekunki': opiekunki})
 
-@login_required  # Dekorator, który sprawdza, czy użytkownik jest zalogowany
+@login_required
 def dodaj_opiekunke(request):
     if request.method == 'POST':
-        form = OpiekunkaForm(request.POST)
+        form = OpiekunkaForm(request.user, request.POST)
         if form.is_valid():
             form.save()
             return redirect('lista_opiekunek')
     else:
-        form = OpiekunkaForm()
+        form = OpiekunkaForm(request.user)
     return render(request, 'opiekunki_app/dodaj.html', {'form': form})
+
+@login_required
+def edytuj_opiekunke(request, opiekunka_id):
+    opiekunka = get_object_or_404(Opiekunka, id=opiekunka_id, user=request.user)
+    if request.method == 'POST':
+        form = OpiekunkaForm(request.user, request.POST, instance=opiekunka)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_opiekunek')
+    else:
+        form = OpiekunkaForm(request.user, instance=opiekunka)
+    return render(request, 'opiekunki_app/edytuj.html', {'form': form, 'opiekunka': opiekunka})
+
+@login_required
+def usun_opiekunke(request, opiekunka_id):
+    opiekunka = get_object_or_404(Opiekunka, id=opiekunka_id, user=request.user)
+    if request.method == 'POST':
+        opiekunka.delete()
+        return redirect('lista_opiekunek')
+    return render(request, 'opiekunki_app/usun.html', {'opiekunka': opiekunka})
 
 def rejestracja(request):
     if request.method == 'POST':
