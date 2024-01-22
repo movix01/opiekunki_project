@@ -11,10 +11,11 @@
     {% if show_login_register %}
     <a href="{% url 'logowanie' %}"><button>Zaloguj się</button></a>
     <a href="{% url 'rejestracja' %}"><button>Zarejestruj się</button></a>
-    <a href="{% url 'lista_opiekunek' %}"><button>Lista Opiekunek</button></a>
+    <a href="{% url 'ogloszenia' %}"><button>Ogłoszenia</button></a>
     {% else %}
     <!-- Tutaj możesz dodać dodatkowe opcje dostępne tylko dla zalogowanych użytkowników -->
-    <a href="{% url 'lista_opiekunek' %}"><button>Lista Opiekunek</button></a>
+    <a href="{% url 'ogloszenia' %}"><button>Ogłoszenia</button></a>
+    <a href="{% url 'lista_opiekunek' %}"><button>Moje ogłoszenie</button></a>
     <a href="{% url 'wylogowanie' %}"><button>Wylogowanie</button></a>
     {% endif %}
 

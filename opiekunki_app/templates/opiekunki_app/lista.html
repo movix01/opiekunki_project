@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Opiekunek</title>
+    <title>Moje ogłoszenie</title>
 </head>
 <body>
-    <h1>Lista Opiekunek</h1>
-    <a href="{% url 'dodaj_opiekunke' %}">Dodaj nową opiekunkę</a><br>
+    <h1>Moje Ogłoszenie</h1>
     <ul>
         {% for opiekunka in opiekunki %}
             <li>
@@ -16,7 +15,7 @@
                 <a href="{% url 'usun_opiekunke' opiekunka.id %}">Usuń</a>
             </li>
         {% empty %}
-            <li>Brak opiekunek do wyświetlenia.</li>
+            <a href="{% url 'dodaj_opiekunke' %}">Dodaj swoje ogłoszenie</a><br>
         {% endfor %}
     </ul>
     <a href="{% url 'strona_domowa' %}">Powrót</a>

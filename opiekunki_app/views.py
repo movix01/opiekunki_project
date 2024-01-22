@@ -17,6 +17,10 @@ def strona_domowa(request):
 
     return render(request, 'opiekunki_app/strona_domowa.html', context)
 
+def ogloszenia(request):
+    opiekunki = Opiekunka.objects.all()
+    return render(request, 'opiekunki_app/ogloszenia.html', {'opiekunki': opiekunki})
+
 @login_required
 def lista_opiekunek(request):
     opiekunki = Opiekunka.objects.filter(user=request.user)
