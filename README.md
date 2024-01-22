@@ -37,3 +37,4 @@ Projektu można używać zgodnie z warunkami licencji **[PH]**
    - Priorytet: 2
 4. **Podział ogłoszeń na 'szukam opiekunki' oraz 'szukam pracy'**
    - Opis: Zamieszczanie ogłoszeń zarówno jako osoba poszukujące opiekunki jak i jako opiekunka poszukująca pracy.
+   - Priorytet: 3
