@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', views.strona_domowa, name='strona_domowa'),
@@ -12,3 +13,5 @@ urlpatterns = [
     path('wylogowanie/', views.wylogowanie, name='wylogowanie'),
     path('ogloszenia/',views.ogloszenia, name='ogloszenia'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
