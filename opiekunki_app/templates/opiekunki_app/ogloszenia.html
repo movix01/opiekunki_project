@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Opiekunek</title>
+</head>
+<body>
+    <h1>Lista Opiekunek</h1>
+    <ul>
+        {% for opiekunka in opiekunki %}
+        <li>
+            <strong>{{ opiekunka.imie }} {{ opiekunka.nazwisko }}</strong> - {{ opiekunka.opis }} 
+            <span>(dodano: {{ opiekunka.data_dodania|date:"d.m.Y H:i" }})</span>
+        </li>
+        {% empty %}
+        <li>Brak opiekunek do wyświetlenia.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'strona_domowa' %}">Powrót</a>
+</body>
+</html>
