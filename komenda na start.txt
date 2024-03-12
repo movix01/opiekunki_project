@@ -1,1 +1,6 @@
 python manage.py runserver
+
+
+def ogloszenia(request):
+    opiekunki = Opiekunka.objects.all()
+    return render(request, 'opiekunki_app/ogloszenia.html', {'opiekunki': opiekunki})

@@ -14,12 +14,19 @@ def strona_domowa(request):
     else:
         # Jeśli użytkownik nie jest zalogowany
         context['show_login_register'] = True
-
     return render(request, 'opiekunki_app/strona_domowa.html', context)
 
 def ogloszenia(request):
     opiekunki = Opiekunka.objects.all()
-    return render(request, 'opiekunki_app/ogloszenia.html', {'opiekunki': opiekunki})
+    context = {'opiekunki': opiekunki,
+               'show_login_register': False}
+    if request.user.is_authenticated:
+        # Jeśli użytkownik jest zalogowany
+        pass  # Możesz tutaj dodać dodatkową logikę dla zalogowanych użytkowników
+    else:
+        # Jeśli użytkownik nie jest zalogowany
+        context['show_login_register'] = True
+    return render(request, 'opiekunki_app/ogloszenia.html', context)
 
 @login_required
 def lista_opiekunek(request):

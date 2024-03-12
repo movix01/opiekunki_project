@@ -51,11 +51,13 @@
 <body>
     <nav>
         {% if show_login_register %}
+            <a href="{% url 'strona_domowa' %}">Strona Domowa</a>
+            <a href="{% url 'ogloszenia' %}">Ogłoszenia</a>
             <a href="{% url 'logowanie' %}">Zaloguj się</a>
             <a href="{% url 'rejestracja' %}">Zarejestruj się</a>
-            <a href="{% url 'ogloszenia' %}">Ogłoszenia</a>
         {% else %}
             <!-- Opcje dostępne tylko dla zalogowanych użytkowników -->
+            <a href="{% url 'strona_domowa' %}">Strona Domowa</a>
             <a href="{% url 'ogloszenia' %}">Ogłoszenia</a>
             <a href="{% url 'lista_opiekunek' %}">Moje ogłoszenie</a>
             <a href="{% url 'wylogowanie' %}">Wylogowanie</a>
