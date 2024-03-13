@@ -21,17 +21,21 @@ def ogloszenia(request):
     context = {'opiekunki': opiekunki,
                'show_login_register': False}
     if request.user.is_authenticated:
-        # Jeśli użytkownik jest zalogowany
-        pass  # Możesz tutaj dodać dodatkową logikę dla zalogowanych użytkowników
+        pass 
     else:
-        # Jeśli użytkownik nie jest zalogowany
         context['show_login_register'] = True
     return render(request, 'opiekunki_app/ogloszenia.html', context)
 
 @login_required
 def lista_opiekunek(request):
     opiekunki = Opiekunka.objects.filter(user=request.user)
-    return render(request, 'opiekunki_app/lista.html', {'opiekunki': opiekunki})
+    context = {'opiekunki': opiekunki,
+               'show_login_register': False}
+    if request.user.is_authenticated:
+        pass 
+    else:
+        context['show_login_register'] = True
+    return render(request, 'opiekunki_app/lista.html', context)
 
 @login_required
 def dodaj_opiekunke(request):
@@ -73,7 +77,13 @@ def rejestracja(request):
             return redirect('strona_domowa')
     else:
         form = UserCreationForm()
-    return render(request, 'opiekunki_app/rejestracja.html', {'form': form})
+    context = { 'form': form,
+               'show_login_register': False}
+    if request.user.is_authenticated:
+        pass 
+    else:
+        context['show_login_register'] = True
+    return render(request, 'opiekunki_app/rejestracja.html', context)
 
 def logowanie(request):
     if request.method == 'POST':
@@ -84,7 +94,13 @@ def logowanie(request):
             return redirect('strona_domowa')
     else:
         form = AuthenticationForm()
-    return render(request, 'opiekunki_app/logowanie.html', {'form': form})
+    context = { 'form': form,
+               'show_login_register': False}
+    if request.user.is_authenticated:
+        pass 
+    else:
+        context['show_login_register'] = True
+    return render(request, 'opiekunki_app/logowanie.html', context)
 
 def wylogowanie(request):
     logout(request)

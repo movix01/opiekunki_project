@@ -84,7 +84,7 @@
         <ul>
             {% for opiekunka in opiekunki %}
             <li>
-                <strong>{{ opiekunka.imie }} {{ opiekunka.nazwisko }}</strong> - {{ opiekunka.opis }} 
+                <strong>{{ opiekunka.imie }} {{ opiekunka.nazwisko }}</strong> - {{ opiekunka.plec }}, {{ opiekunka.wiek }} lat, {{ opiekunka.miasto }}
                 <span>(dodano: {{ opiekunka.data_dodania|date:"d.m.Y H:i" }})</span>
             </li>
             {% empty %}
