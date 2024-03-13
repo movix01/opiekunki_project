@@ -4,7 +4,7 @@ from .models import Opiekunka
 class OpiekunkaForm(forms.ModelForm):
     class Meta:
         model = Opiekunka
-        fields = ['imie', 'nazwisko', 'opis', 'user']
+        fields = ['imie', 'nazwisko', 'plec', 'wiek', 'miasto', 'user']
 
     def __init__(self, user, *args, **kwargs):
         super(OpiekunkaForm, self).__init__(*args, **kwargs)
