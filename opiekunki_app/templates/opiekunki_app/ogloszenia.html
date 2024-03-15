@@ -81,17 +81,22 @@
 
     <div class="content">
         <h1>Lista Opiekunek</h1>
+        
+        <form method="get" action="">
+            {{ form.as_p }}
+            <button type="submit">Filtruj</button>
+        </form>
+
         <ul>
             {% for opiekunka in opiekunki %}
             <li>
-                <strong>{{ opiekunka.imie }} {{ opiekunka.nazwisko }}</strong> - {{ opiekunka.plec }}, {{ opiekunka.wiek }} lat, {{ opiekunka.miasto }}
+                <strong>{{ opiekunka.imie }} {{ opiekunka.nazwisko }}</strong> - {{ opiekunka.plec }}, {{ opiekunka.wiek }} lat, {{ opiekunka.miasto }}, {{opiekunka.rodzaj}}
                 <span>(dodano: {{ opiekunka.data_dodania|date:"d.m.Y H:i" }})</span>
             </li>
             {% empty %}
             <li>Brak opiekunek do wyświetlenia.</li>
             {% endfor %}
         </ul>
-        <a href="{% url 'strona_domowa' %}">Powrót</a>
     </div>
 </body>
 </html>

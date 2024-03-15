@@ -5,6 +5,4 @@ python manage.py flush
 python manage.py makemigrations
 python manage.py migrate
 
-def ogloszenia(request):
-    opiekunki = Opiekunka.objects.all()
-    return render(request, 'opiekunki_app/ogloszenia.html', {'opiekunki': opiekunki})
+python manage.py createsuperuser
