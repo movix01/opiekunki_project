@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edytuj Opinię</title>
+</head>
+<body>
+    <h1>Edytuj opinię</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Zapisz zmiany</button>
+    </form>
+    <a href="{% url 'usun_opinie' opinia.id %}">Usuń</a><br>
+</body>
+</html>

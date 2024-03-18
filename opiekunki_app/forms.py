@@ -19,8 +19,10 @@ class OgloszeniaFilterForm(forms.Form):
 class OpiniaForm(forms.ModelForm):
     class Meta:
         model = Opinia
-        fields = ['autor', 'tresc', 'ocena', 'opiekunka']
+        fields = ['tresc', 'ocena', 'opiekunka', 'user']
 
-    def __init__(self, *args, user=None, **kwargs):
+    def __init__(self, user, *args, **kwargs):
         super(OpiniaForm, self).__init__(*args, **kwargs)
-        self.fields['autor'].initial = user
+        self.fields['user'].initial = user
+        self.fields['user'].widget = forms.HiddenInput()
+        self.fields['opiekunka'].widget = forms.HiddenInput()

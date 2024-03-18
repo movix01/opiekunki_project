@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuń Opinię</title>
+</head>
+<body>
+    <h1>Czy na pewno chcesz usunąć opinię?</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Tak, usuń</button>
+    </form>
+</body>
+</html>

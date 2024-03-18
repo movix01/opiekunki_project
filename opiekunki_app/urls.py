@@ -14,6 +14,8 @@ urlpatterns = [
     path('ogloszenia/', views.ogloszenia, name='ogloszenia'),
     path('opinie_opiekunki/<int:opiekunka_id>/', views.opinie_opiekunki, name='opinie_opiekunki'),
     path('dodaj_opinie/<int:opiekunka_id>/', views.dodaj_opinie, name='dodaj_opinie'),
+    path('edytuj_opinie/<int:opinia_id>/', views.edytuj_opinie, name='edytuj_opinie'),
+    path('usun_opinie/<int:opinia_id>/', views.usun_opinie, name='usun_opinie'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
