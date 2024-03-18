@@ -92,6 +92,7 @@
             <li>
                 <strong>{{ opiekunka.imie }} {{ opiekunka.nazwisko }}</strong> - {{ opiekunka.plec }}, {{ opiekunka.wiek }} lat, {{ opiekunka.miasto }}, {{opiekunka.rodzaj}}
                 <span>(dodano: {{ opiekunka.data_dodania|date:"d.m.Y H:i" }})</span>
+                <a href="{% url 'opinie_opiekunki' opiekunka.id %}">Opinie</a>
             </li>
             {% empty %}
             <li>Brak opiekunek do wyświetlenia.</li>

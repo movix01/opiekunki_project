@@ -11,7 +11,9 @@ urlpatterns = [
     path('rejestracja/', views.rejestracja, name='rejestracja'),
     path('logowanie/', views.logowanie, name='logowanie'),
     path('wylogowanie/', views.wylogowanie, name='wylogowanie'),
-    path('ogloszenia/',views.ogloszenia, name='ogloszenia'),
+    path('ogloszenia/', views.ogloszenia, name='ogloszenia'),
+    path('opinie_opiekunki/<int:opiekunka_id>/', views.opinie_opiekunki, name='opinie_opiekunki'),
+    path('dodaj_opinie/<int:opiekunka_id>/', views.dodaj_opinie, name='dodaj_opinie'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

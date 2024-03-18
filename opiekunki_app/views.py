@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect
-from .models import Opiekunka
-from .forms import OpiekunkaForm, OgloszeniaFilterForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Opiekunka, Opinia
+from .forms import OpiekunkaForm, OgloszeniaFilterForm, OpiniaForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
 
 def strona_domowa(request):
     context = {}
@@ -43,6 +42,38 @@ def ogloszenia(request):
     else:
         context['show_login_register'] = True
     return render(request, 'opiekunki_app/ogloszenia.html', context)
+
+def opinie_opiekunki(request, opiekunka_id):
+    opiekunka = get_object_or_404(Opiekunka, pk=opiekunka_id)
+    opinie = Opinia.objects.filter(opiekunka=opiekunka)
+    context = {'opiekunka': opiekunka,
+               'opinie': opinie,
+               'show_login_register': False}
+    if request.user.is_authenticated:
+        pass 
+    else:
+        context['show_login_register'] = True
+    return render(request, 'opiekunki_app/opinie_opiekunki.html', context)
+
+def dodaj_opinie(request, opiekunka_id):
+    opiekunka = get_object_or_404(Opiekunka, id=opiekunka_id)
+    if request.method == 'POST':
+        form = OpiniaForm(request.user, request.POST)
+        if form.is_valid():
+            opinia = form.save(commit=False)
+            opinia.opiekunka = opiekunka
+            opinia.save()
+            return redirect('opinie_opiekunki', opiekunka_id=opiekunka_id)
+    else:
+        form = OpiniaForm()
+    context = {'form': form,
+               'show_login_register': False}
+    
+    if request.user.is_authenticated:
+        pass 
+    else:
+        context['show_login_register'] = True
+    return render(request, 'opiekunki_app/dodaj_opinie.html', context)
 
 @login_required
 def lista_opiekunek(request):

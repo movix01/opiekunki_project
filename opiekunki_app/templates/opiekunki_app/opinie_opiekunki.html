@@ -1,0 +1,9 @@
+<h2>Opinie o {{ opiekunka.imie }} {{ opiekunka.nazwisko }}</h2>
+<ul>
+    {% for opinia in opinie %}
+        <li>{{ opinia.autor }} - {{ opinia.tresc }} (Ocena: {{ opinia.ocena }})</li>
+    {% empty %}
+        <li>Brak opinii.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'dodaj_opinie' opiekunka.id %}">Dodaj opinię</a>

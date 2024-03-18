@@ -1,0 +1,6 @@
+<h2>Dodaj opinię o {{ opiekunka.imie }} {{ opiekunka.nazwisko }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Dodaj opinię</button>
+</form>

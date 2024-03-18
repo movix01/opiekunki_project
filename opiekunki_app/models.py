@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Opiekunka(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     imie = models.CharField(max_length=100)
     nazwisko = models.CharField(max_length=100)
@@ -25,3 +27,11 @@ class Rodzaj(models.Model):
 
     def __str__(self):
         return self.nazwa
+    
+class Opinia(models.Model):
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    tresc = models.TextField()
+    ocena = models.IntegerField()
+    opiekunka = models.ForeignKey('Opiekunka', on_delete=models.CASCADE)
+
+#validators=[MinValueValidator(1), MaxValueValidator(5)]
