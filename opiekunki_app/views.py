@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Opiekunka
-from .forms import OpiekunkaForm
+from .forms import OpiekunkaForm, OgloszeniaFilterForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -18,8 +18,26 @@ def strona_domowa(request):
 
 def ogloszenia(request):
     opiekunki = Opiekunka.objects.all()
+    form = OgloszeniaFilterForm(request.GET)
+
+    if form.is_valid():
+        miasto = form.cleaned_data.get('miasto')
+        plec = form.cleaned_data.get('plec')
+        rodzaj = form.cleaned_data.get('rodzaj')
+        
+        if miasto:
+            opiekunki = opiekunki.filter(miasto__icontains=miasto)
+        
+        if plec:
+            opiekunki = opiekunki.filter(plec=plec)
+
+        if rodzaj:
+            opiekunki = opiekunki.filter(rodzaj=rodzaj)
+
     context = {'opiekunki': opiekunki,
+               'form': form,
                'show_login_register': False}
+
     if request.user.is_authenticated:
         pass 
     else:
