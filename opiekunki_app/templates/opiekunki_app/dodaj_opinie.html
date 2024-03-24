@@ -1,6 +1,50 @@
-<h2>Dodaj opinię o {{ opiekunka.imie }} {{ opiekunka.nazwisko }}</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Dodaj opinię</button>
-</form>
+<!DOCTYPE html>
+<html lang="pl">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <script src="{% static 'scripts/navbar.js' %}"></script>
+    <title>Dodaj opinię</title>
+</head>
+
+<body class="has-navbar-fixed-top">
+    <nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" id="navbar-burger" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{% url 'strona_domowa' %}">Strona Domowa</a>
+                <a class="navbar-item" href="{% url 'ogloszenia' %}">Ogłoszenia</a>
+                {% if show_login_register %}
+                {% else %}
+                    <a class="navbar-item" href="{% url 'lista_opiekunek' %}">Moje ogłoszenie</a>
+                {% endif %}
+            </div>
+            <div class="navbar-end">
+                {% if show_login_register %}
+                    <a class="navbar-item" href="{% url 'logowanie' %}">Zaloguj się</a>
+                    <a class="navbar-item" href="{% url 'rejestracja' %}">Zarejestruj się</a>
+                {% else %}
+                    <a class="navbar-item" href="{% url 'wylogowanie' %}">Wylogowanie</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="object">
+        <h1>Dodaj opinię o {{ opiekunka.imie }} {{ opiekunka.nazwisko }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Dodaj opinię</button>
+        </form>
+    </div>
+</body>
+</html>

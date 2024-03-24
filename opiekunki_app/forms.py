@@ -1,10 +1,46 @@
 from django import forms
 from .models import Opiekunka, Opinia
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class RejestracjaForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({
+            'required':'',
+            'name':'username',
+            'id':"username",
+            'type':"text",
+            'class':"form-input",
+            'placeholder':"login",
+            'maxlength':"20",
+            'minlength':"5"
+        })
+        self.fields['password1'].widget.attrs.update({
+            'required':'',
+            'name':'password1',
+            'id':"password1",
+            'type':"password",
+            'class':"form-input",
+            'placeholder':"hasło",
+        })
+        self.fields['password2'].widget.attrs.update({
+            'required':'',
+            'name':'password2',
+            'id':"password2",
+            'type':"text",
+            'class':"form-input",
+            'placeholder':"login",
+        })
+
+    class Meta:
+        model = User
+        fields = ['username', 'password1', 'password2']
 
 class OpiekunkaForm(forms.ModelForm):
     class Meta:
         model = Opiekunka
-        fields = ['imie', 'nazwisko', 'plec', 'wiek', 'miasto', 'rodzaj', 'user']
+        fields = ['imie', 'nazwisko', 'plec', 'wiek', 'miasto', 'rodzaj', 'user', 'opis']
 
     def __init__(self, user, *args, **kwargs):
         super(OpiekunkaForm, self).__init__(*args, **kwargs)

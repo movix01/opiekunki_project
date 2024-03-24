@@ -11,6 +11,7 @@ class Opiekunka(models.Model):
     miasto = models.CharField(max_length=100)
     rodzaj = models.ForeignKey('Rodzaj', on_delete=models.CASCADE)
     data_dodania = models.DateTimeField(auto_now_add=True)
+    opis = models.TextField()
 
     def __str__(self):
         return f"{self.imie} {self.nazwisko}"
