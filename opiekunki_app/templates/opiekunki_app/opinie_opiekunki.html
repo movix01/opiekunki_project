@@ -31,6 +31,7 @@
                 {% if show_login_register %}
                     <a class="navbar-item" href="{% url 'logowanie' %}">Zaloguj się</a>
                     <a class="navbar-item" href="{% url 'rejestracja' %}">Zarejestruj się</a>
+                {% else %}
                     <a class="navbar-item" href="{% url 'wylogowanie' %}">Wylogowanie</a>
                 {% endif %}
             </div>

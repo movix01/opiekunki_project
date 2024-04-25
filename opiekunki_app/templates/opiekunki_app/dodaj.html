@@ -40,13 +40,15 @@
     
     <div class="content">
         <h1>Dodaj nową opiekunkę</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
+        <div class="form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
 
-            <button type="submit">Dodaj</button>
-        </form>
-        <a href="{% url 'lista_opiekunek' %}">Wróć do listy</a>
+                <button type="submit">Dodaj</button>
+            </form>
+        </div>
+        <a href="{% url 'lista_opiekunek' %}">Anuluj</a>
     </div>
 </body>
 </html>

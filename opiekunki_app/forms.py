@@ -1,6 +1,6 @@
 from django import forms
 from .models import Opiekunka, Opinia
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 class RejestracjaForm(UserCreationForm):
@@ -30,12 +30,38 @@ class RejestracjaForm(UserCreationForm):
             'id':"password2",
             'type':"text",
             'class':"form-input",
-            'placeholder':"login",
+            'placeholder':"hasło",
         })
 
     class Meta:
         model = User
         fields = ['username', 'password1', 'password2']
+
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({
+            'required':'',
+            'name':'username',
+            'id':"username",
+            'type':"text",
+            'class':"form-input",
+            'placeholder':"login",
+            'maxlength':"20",
+            'minlength':"5"
+        })
+        self.fields['password'].widget.attrs.update({
+            'required':'',
+            'name':'password',
+            'id':"password",
+            'type':"password",
+            'class':"form-input",
+            'placeholder':"hasło",
+        })
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
 
 class OpiekunkaForm(forms.ModelForm):
     class Meta:

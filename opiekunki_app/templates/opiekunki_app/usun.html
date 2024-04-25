@@ -40,11 +40,14 @@
 
     <div class="content">
         <h1>Czy na pewno chcesz usunąć opiekunkę "{{ opiekunka }}"?</h1>
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit">Tak, usuń</button>
-        </form>
-        <a href="{% url 'lista_opiekunek' %}">Anuluj</a>
+        <div class="form">
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit">Tak, usuń</button>
+                
+            </form>
+            <a href="{% url 'lista_opiekunek' %}"><button>Anuluj</button></a>
+        </div>
     </div>
 </body>
 </html>

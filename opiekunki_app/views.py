@@ -1,8 +1,7 @@
 import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Opiekunka, Opinia
-from .forms import OpiekunkaForm, OgloszeniaFilterForm, OpiniaForm, RejestracjaForm
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .forms import OpiekunkaForm, OgloszeniaFilterForm, OpiniaForm, RejestracjaForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -142,23 +141,6 @@ def usun_opiekunke(request, opiekunka_id):
         return redirect('lista_opiekunek')
     return render(request, 'opiekunki_app/usun.html', {'opiekunka': opiekunka})
 
-# def rejestracja(request):
-#     if request.method == 'POST':
-#         form = RejestracjaForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('strona_domowa')
-#     else:
-#         form = RejestracjaForm()
-#     context = { 'form': form,
-#                'show_login_register': False}
-#     if request.user.is_authenticated:
-#         pass 
-#     else:
-#         context['show_login_register'] = True
-#     return render(request, 'opiekunki_app/rejestracja.html', context)
-
 def rejestracja(request):
     form = RejestracjaForm(request.POST)
     if form.is_valid():
@@ -181,13 +163,13 @@ def rejestracja(request):
 
 def logowanie(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = LoginForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             return redirect('strona_domowa')
     else:
-        form = AuthenticationForm()
+        form = LoginForm()
     context = { 'form': form,
                'show_login_register': False}
     if request.user.is_authenticated:
