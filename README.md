@@ -9,7 +9,7 @@ Autorzy:
 - Michał Piszczek
 
 
-Projektu można używać zgodnie z warunkami licencji **CC BY-NC**
+Projektu można używać zgodnie z warunkami licencji **GNU**
 
 ## Technologie
 
