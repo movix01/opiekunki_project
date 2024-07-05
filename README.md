@@ -15,7 +15,7 @@ Projektu można używać zgodnie z warunkami licencji **CC BY-NC**
 
 - Python
 - Django
-- Bulma (?)
+- Bulma
 
 ## Specyfikacja wymagań
 
